@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>Consultar Clima</h1>
+    </div>
+
+     <div class="panel-body">
+        <div class="col-lg-12">
+          <div class="col-lg-3 form-group">
+            <div class="col-lg-12 form-group">
+              <label>Digite o nome da cidade</label>
+              <p-autoComplete [(ngModel)]="city" [suggestions]="results" (completeMethod)="getCityList($event)" field="name"></p-autoComplete>
+            </div>
+
+            <div class="col-lg-12 form-group">
+              <input id="btnConsultar" value="Consultar" class="btn btn-primary form-control" type="submit" (click)='searchCityWeather(city)' />   
+            </div>
+                                               
+          </div>
+
+          <div class="col-lg-7">
+              <div class="col-lg-7">            
+                  <div *ngIf="cityWeather">
+                      <p><b>{{city.name}} - {{cityWeather.sys.country}}</b></p>
+                      <p><b>{{convertTemperature(cityWeather.main.temp)}}ºC</b></p>
+                      <p>Máxima: {{convertTemperature(cityWeather.main.temp_max)}}ºC</p>
+                      <p>Mínima: {{convertTemperature(cityWeather.main.temp_min)}}ºC</p>
+                      <p>Umidade: {{cityWeather.main.humidity}}%</p>
+                      <p>Pressão: {{cityWeather.main.pressure}} hPa</p>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+     </div>
+
+     <div class="panel-footer">
+     </div>
+
+  </div>
+</div>
